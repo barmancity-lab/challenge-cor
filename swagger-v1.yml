@@ -1,0 +1,85 @@
+---
+swagger: '2.0'
+info:
+  description: 'Check the weather'
+  version: 'v1'
+  title: 'Challenge telecom'
+basePath: '/v1'
+schemes:
+  - 'http'
+paths:
+  /v1/forecast:
+    get:
+      summary: 'Forecast'
+      description: 'Get five days weather  info according to ip'
+      produces:
+        - 'application/json'
+      responses:
+        200:
+          description: 'Ok'
+          schema:
+            $ref: '#/definitions/response-ok'
+  /v1/forecast/{city}:
+    get:
+      summary: 'Forecast'
+      description: 'Get five-day weather information from a city'
+      produces:
+        - application/json
+      parameters:
+        - name: 'city'
+          in: 'path'
+          description: "City"
+          required: true
+          type: 'string'
+      responses:
+        200:
+          description: 'OK'
+          schema:
+            $ref: '#/definitions/response-ok'
+  /v1/current/{city}:
+    get:
+      summary: 'Current'
+      description: 'Get current day weather information from a city'
+      produces:
+        - application/json
+      parameters:
+        - name: 'city'
+          in: 'path'
+          description: "City"
+          required: true
+          type: 'string'
+      responses:
+        200:
+          description: 'OK'
+          schema:
+            $ref: '#/definitions/response-ok'
+  /v1/current:
+    get:
+      summary: 'Current'
+      description: 'Get current day weather information according to ip'
+      produces:
+        - 'application/json'
+      responses:
+        200:
+          description: 'Ok'
+          schema:
+            $ref: '#/definitions/response-ok'
+  /v1/location:
+    get:
+      summary: 'Location'
+      description: 'Get location information according to ip'
+      produces:
+        - 'application/json'
+      responses:
+        200:
+          description: 'Ok'
+          schema:
+            $ref: '#/definitions/response-ok'          
+definitions:
+  response-ok:
+    type: 'object'
+    properties:
+      status_code:
+       type: 'number'
+      message:
+       type: 'object'
