@@ -6,6 +6,17 @@ const {
 } = require('../util/common-response');
 
 module.exports = function SoupController() {
+  // eslint-disable-next-line
+  this.doResponse = (horizontalSearch, verticalSearch, diagonalSearch, diagonalSearchReverse, grid) => {
+    return {
+      horizontal_search: horizontalSearch,
+      vertical_search: verticalSearch,
+      diagonal_search: diagonalSearch,
+      diagonal_search_reverse: diagonalSearchReverse,
+      total_matches: horizontalSearch + verticalSearch + diagonalSearch + diagonalSearchReverse,
+      grid
+    };
+  };
   this.call = async (req) => {
     // eslint-disable-next-line
     const rows = req.body.rows;
@@ -19,8 +30,8 @@ module.exports = function SoupController() {
     const diagonalSearch = soupUtils.diagonalSearch(grid, rows, search, searchReversed);
     // eslint-disable-next-line
     const diagonalSearchReverse = soupUtils.diagonalSearch(grid, rows, search, searchReversed, true);
-    const totalMatch = horizontalSearch + verticalSearch + diagonalSearch + diagonalSearchReverse;
-    return totalMatch;
+    // eslint-disable-next-line
+    return this.doResponse(horizontalSearch, verticalSearch, diagonalSearch, diagonalSearchReverse, grid);
   };
 
   this.resolve = async (req, res) => {
@@ -31,4 +42,4 @@ module.exports = function SoupController() {
       return setResponseWithError(res, 500, err.message);
     }
   };
-}
+};

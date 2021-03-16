@@ -1,12 +1,10 @@
 module.exports = {
-  name: process.env.NODE_CONTEXT_NAME || 'challenge',
+  name: process.env.NODE_CONTEXT_NAME || 'challenge-cor',
   port: process.env.NODE_CONTEXT_PORT || 3053,
   middlewares: {
     commons: process.env.NODE_CONTEXT_MIDDLEWARE_COMMONS || [
-      'check-country-middleware'
-    ],
-    weather: process.env.NODE_CONTEXT_MIDDLEWARE_COMMONS || [
-      'check-country-middleware'
+      'validate-soup-schema-middleware',
+      'validate-rows-cols-middleware'
     ]
   },
   country: process.env.NODE_ENVIRONMENT_COUNTRY || 'ar',
