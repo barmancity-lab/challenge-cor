@@ -1,7 +1,7 @@
 /* eslint-disable security/detect-non-literal-require */
+console.log(process.env.NODE_ENV_CONTEXT)
 
 const context = require('./app/config/').context;
-
 const express = require('express');
 const bodyParser = require('body-parser');
 const compression = require('compression');

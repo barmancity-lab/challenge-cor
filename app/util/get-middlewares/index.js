@@ -87,9 +87,6 @@ function getMiddlewares(middlewareNames, localPath = DEFAULT_MIDDLEWARE_PATH) {
           break;
         }
         default : {
-          const mdwPath = searchRecursive(localPath, name);
-            const middleware = require(mdwPath)[info.middleware]; // eslint-disable-line
-          arrayOfMiddleware.push(middleware);
           break;
         }
       }

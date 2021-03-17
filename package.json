@@ -7,6 +7,7 @@
     "start": "node ./bin/www",
     "local-default-w": "NODE_ENV=local  NODE_ENV_CONTEXT=default ./node_modules/nodemon/bin/nodemon.js -r dotenv/config ./bin/www",
     "local-default": "NODE_ENV=local NODE_ENV_CONTEXT=default node -r dotenv/config ./bin/www",
+    "local-default-windows": "SET NODE_ENV=local&SET NODE_ENV_CONTEXT=default& node -r dotenv/config ./bin/www",
     "eslint": "eslint  ./bin/www ./context/*.js  app.js   ./app/*.js ./app/**/*.js ./app/**/**/*.js --quiet",
     "eslint-w": "esw app.js   ./bin/www ./context/*.js  app.js   ./app/*.js ./app/**/*.js ./app/**/**/*.js  -w --quiet",
     "eslint-fix": "eslint   ./bin/www ./context/*.js  app.js   ./app/*.js ./app/**/*.js ./app/**/**/*.js  --fix",
