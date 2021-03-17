@@ -1,7 +1,7 @@
 {
-  "name": "challenge-telecom",
+  "name": "challenge-cor",
   "version": "1.0.0",
-  "description": "Service challenge telecom",
+  "description": "Service challenge cor",
   "main": "./bin/www",
   "scripts": {
     "start": "node ./bin/www",
