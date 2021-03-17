@@ -1,6 +1,6 @@
-# Challenge telecom
+# Challenge cor
 
-Service to check weather
+Alphabet soup 
 
 
 ## Installation of dependencies

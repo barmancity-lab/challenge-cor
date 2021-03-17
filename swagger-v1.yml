@@ -1,81 +1,49 @@
 ---
 swagger: '2.0'
 info:
-  description: 'Check the weather'
+  description: 'alphabet soup'
   version: 'v1'
-  title: 'Challenge telecom'
+  title: 'Challenge cor'
 basePath: '/v1'
 schemes:
   - 'http'
 paths:
-  /v1/forecast:
-    get:
-      summary: 'Forecast'
-      description: 'Get five days weather  info according to ip'
+  /soup:
+    post:
+      summary: 'alphabet soup'
+      description: 'Search a word in the alphabet soup'
       produces:
         - 'application/json'
-      responses:
-        200:
-          description: 'Ok'
-          schema:
-            $ref: '#/definitions/response-ok'
-  /v1/forecast/{city}:
-    get:
-      summary: 'Forecast'
-      description: 'Get five-day weather information from a city'
-      produces:
-        - application/json
+      consumes:
+       - 'application/json'
       parameters:
-        - name: 'city'
-          in: 'path'
-          description: "City"
-          required: true
-          type: 'string'
-      responses:
-        200:
-          description: 'OK'
-          schema:
-            $ref: '#/definitions/response-ok'
-  /v1/current/{city}:
-    get:
-      summary: 'Current'
-      description: 'Get current day weather information from a city'
-      produces:
-        - application/json
-      parameters:
-        - name: 'city'
-          in: 'path'
-          description: "City"
-          required: true
-          type: 'string'
-      responses:
-        200:
-          description: 'OK'
-          schema:
-            $ref: '#/definitions/response-ok'
-  /v1/current:
-    get:
-      summary: 'Current'
-      description: 'Get current day weather information according to ip'
-      produces:
-        - 'application/json'
+      - name: 'soup'
+        description: 'alphabet soup'
+        in: body
+        schema: 
+         $ref: '#/definitions/request'
       responses:
         200:
           description: 'Ok'
           schema:
             $ref: '#/definitions/response-ok'
-  /v1/location:
-    get:
-      summary: 'Location'
-      description: 'Get location information according to ip'
-      produces:
-        - 'application/json'
-      responses:
-        200:
-          description: 'Ok'
-          schema:
-            $ref: '#/definitions/response-ok'          
+            
 definitions:
+  request:
+    type: 'object'
+    properties:
+     columns:
+      type: 'integer'
+      example: 5
+     rows:
+      type: 'integer'
+      example: 5
+     search:
+      type: 'string'
+      example: "OIE"
+     soup: 
+      type: 'string'
+      example: "EAEAEAIIIAEIOIEAIIIAEAEAE"
   response-ok:
     type: 'object'
     properties:
@@ -83,3 +51,24 @@ definitions:
        type: 'number'
       message:
        type: 'object'
+       properties:
+        horizontal_search:
+         type: 'integer'
+         example: 2
+        vertical_search:
+         type: 'integer'
+         example: 2
+        diagonal_search:
+         type: 'integer'
+         example: 2
+        diagonal_search_reverse:
+         type: 'integer'
+         example: 2
+        total_matches:
+         type: 'integer'
+         example: 8
+        grid:
+         type: 'array'
+         items: 
+          example: ['EAEAE','AIIIA','EIOIE','AIIIA','EAEAE']
+       
