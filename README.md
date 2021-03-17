@@ -35,6 +35,12 @@ If you want to run in mode **watch** (reload the service for each change)
 npm run  local-default-w
 ```
 
+If you want to run widows 
+
+```sh
+npm run  local-default-windows
+```
+
 ## Swagger
 
 There is an endpoint to see the swagger file
