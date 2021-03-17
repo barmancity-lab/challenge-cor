@@ -24,12 +24,8 @@ describe('config', () => {
       envs.forEach((env) => {
         let config = require(`./config.${env}`);
         
-        expect(config.check_weather).to.have.property('timeout');
-        expect(config.check_weather).to.have.property('endpoint');
-        expect(config.check_weather).to.have.property('key');
-
-        expect(config.location_service).to.have.property('timeout');
-        expect(config.location_service).to.have.property('endpoint');
+        expect(config.service).to.have.property('timeout');
+        expect(config.service).to.have.property('endpoint');
         config = null;
       });
     });

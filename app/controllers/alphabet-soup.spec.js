@@ -4,7 +4,7 @@ const chai = require('chai');
 const expect = chai.expect;
 const body = {};
 const responseRP = {statusCode: 200, body: {}}
-describe('Check Weather', () => {
+describe('Aphabet soup', () => {
   beforeEach(() => {
     mockery.enable({
       warnOnReplace: false,
@@ -40,27 +40,19 @@ describe('Check Weather', () => {
   });
 
   describe('resolve method', () => {
-    it('should return response from get location', async () => {
+    it('should return response soup result', async () => {
 
-      mockery.registerMock('../services/get-location', function() {
-        this.get = () => {
-          return 'ARG';
-        };
-      });
-      mockery.registerMock('request-promise', function () {
-        return Promise.resolve({ code: 200, message: 'ok',body:{} });
-      });
-
-      const Controller = require('./check-weather');
+      const Controller = require('./alphabet-soup');
       controllerObj = new Controller();
 
       const request = {};
-      request.body = body;
+      request.body = { columns:5,
+                       rows:5,
+                       search:'OIE',
+                       soup:'EAEAEAIIIAEIOIEAIIIAEAEA'
+                      };
       request.timeout = 5000;
-      request.route = {};
-      request.route.path = '/current'
-      request.params = {}
-      request.params.city = 'arg'
+
 
       const response = await controllerObj.resolve(request);
       expect(response).to.haveOwnProperty('status_code');

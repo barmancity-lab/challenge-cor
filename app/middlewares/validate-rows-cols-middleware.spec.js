@@ -4,7 +4,7 @@ const sinon = require("sinon");
 
 const expect = chai.expect;
 
-describe("validateIdMiddleware", () => {
+describe("validateRowsColsMiddleware", () => {
   beforeEach(function() {
     mockery.enable({
       warnOnReplace: false,
@@ -18,33 +18,32 @@ describe("validateIdMiddleware", () => {
     mockery.deregisterAll();
   });
 
-  describe("validateIdMiddleware middleware", () => {
-    it("should return next() when  the id is present", function() {
+  describe("validate cols rows middleware", () => {
+    it("should return next() when the cols and rows are correct ", function() {
       let request = {};
-      request.params = {};
-      request.params["id"] = "11111";
+
       request.body = {
-        persona: {
-          documento_identidad: "12345454",
-          tipo_documento: "RUT"
-        }
+        columns: 2,
+        rows: 2,
+        soup:"AAAA",
+        search: "AA" 
       };
       const nextSpy = sinon.spy();
 
-      let middleware = require("./validate-id-middleware").validateIdMiddleware;
+      let middleware = require("./validate-rows-cols-middleware").validateRowsColsMiddleware;
       middleware(request, null, nextSpy);
 
       expect(nextSpy.called).to.be.true;
     });
 
-    it("should return an error when the id is not present", function() {
+    it("should return an error when the cols and rows are not correct ", function() {
       let request = {};
-      request.params = {};
+
       request.body = {
-        persona: {
-          documento_identidad: "12345454",
-          tipo_documento: "RUT"
-        }
+        columns: 2,
+        rows: 2,
+        soup:"AAA",
+        search: "AA" 
       };
       let mockResponse = {
         setResponseWithError: () => {}
@@ -52,13 +51,13 @@ describe("validateIdMiddleware", () => {
       const responseSpy = sinon.spy(mockResponse, "setResponseWithError");
       mockery.registerMock("../util/common-response", mockResponse);
 
-      let middleware = require("./validate-id-middleware").validateIdMiddleware;
+      let middleware = require("./validate-rows-cols-middleware").validateRowsColsMiddleware;
       middleware(request, null, null);
 
       expect(responseSpy.called).to.be.true;
       expect(responseSpy.args[0][0]).to.be.null;
       expect(responseSpy.args[0][1]).to.be.equal(400);
-      expect(responseSpy.args[0][2]).to.be.equal("the id was not found");
+      expect(responseSpy.args[0][2]).to.be.equal("soup field must have 4 characters");
     });
   });
 });

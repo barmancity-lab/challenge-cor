@@ -5,24 +5,10 @@ const chai = require('chai');
 const expect = chai.expect;
 
 const body = {
-  persona: {
-    apellido_materno: 'foo',
-    apellido_paterno: 'foo',
-    nombres: 'bar',
-    documento_identidad: {
-      tipo_documento: '01',
-      numero_documento: '2000000k'
-    }
-  },
-  informacion_contacto: {
-    telefono: {
-      numero_telefono: '1414141414'
-    },
-    correo_electronico: {
-      direccion_correo_electronico: 'asdb@gmail.com'
-    }
-  },
-  fecha_registro: '1991-29-01'
+  columns: 2,
+  rows: 2,
+  soup:"AAAA",
+  search: "AA" 
 };
 
 describe('client', () => {
@@ -39,16 +25,16 @@ describe('client', () => {
     mockery.deregisterAll();
   });
 
-  describe('client schema', () => {
+  describe('soup schema', () => {
     it('should not return an error', () => {
-      const schema = require('./customer');
+      const schema = require('./soup-schema');
       const result = Joi.validate(body, schema);
       console.info(result.error);
       expect(result.error).to.be.null;
     });
 
     it('should return an error', () => {
-      const schema = require('./customer');
+      const schema = require('./soup-schema');
       const result = Joi.validate({ ...body, informacion_contacto: null }, schema);
       expect(result.error).to.be.not.null;
     });

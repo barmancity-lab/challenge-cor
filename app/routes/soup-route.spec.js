@@ -5,8 +5,8 @@ const sinon = require('sinon');
 const expect = chai.expect;
 
 const baseSpec = require('../base.spec');
-baseSpec('weatherRoute', () => {
-  describe('weatherRoute', () => {
+baseSpec('soupRoute', () => {
+  describe('soupRoute', () => {
     beforeEach(() => {
       mockery.enable({
         warnOnReplace: false,
@@ -21,11 +21,10 @@ baseSpec('weatherRoute', () => {
     });
 
     describe('checking the actions', () => {
-      it('should allow calls by using POST, GET', () => {
+      it('should allow calls by using POST', () => {
         const actionsMock = {
           post(path, middleware) {},
         };
-        const getSpy = sinon.spy(actionsMock, 'get');
         const postSpy = sinon.spy(actionsMock, 'post');
 
         const expressMock = {
@@ -33,20 +32,25 @@ baseSpec('weatherRoute', () => {
             return actionsMock;
           }
         };
+        
+        
         mockery.registerMock('express', expressMock);
         mockery.registerMock('../config', {
           context: {
+            middlewares: {commons: [ ]
+            }
           }
         });
-
+      
+        
         const getMiddlewaresMock = function (middlewares) {
           return middlewares;
         };
 
-        require('./weather-route');
+        require('./soup-route');
 
-        expect(getSpy.called).to.be.true;
-        expect(getSpy.args[0][0]).to.be.equal('/forecast');
+        expect(postSpy.called).to.be.true;
+        expect(postSpy.args[0][0]).to.be.equal('/soup');
       });
     });
   });
